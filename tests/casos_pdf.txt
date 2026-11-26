@@ -1,0 +1,28 @@
+# modo: normal
+# Los 13 casos de la tabla "Ejemplos de acciones bien y mal escritas" del enunciado
+# 1  PERMITIR
+[usuario]  consultar_bd("SELECT nombre FROM empleos WHERE ciudad = 'GDL';")
+# 2  PERMITIR
+[usuario]  consultar_bd("SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pendiente') OR urgente = 1;")
+# 3  PERMITIR
+[usuario]  abrir_enlace("https://www.iteso.mx/web/general/detalle?id=24")
+# 4  Error léxico (cadena sin cerrar)
+[usuario]  consultar_bd("SELECT nombre FROM empleos WHERE ciudad = 'GDL;")
+# 5  Error léxico (# no es símbolo)
+[usuario]  consultar_bd("SELECT nombre FROM empleos WHERE ciudad # 'GDL';")
+# 6  Error sintáctico (falta FROM y la condición)
+[usuario]  consultar_bd("SELECT nombre empleos WHERE;")
+# 7  Error sintáctico (paréntesis sin cerrar)
+[usuario]  consultar_bd("SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pendiente';")
+# 8  Error sintáctico (falta : después del esquema)
+[usuario]  abrir_enlace("https//bbva.mx")
+# 9  BLOQUEAR (R1)
+[usuario]  consultar_bd("DELETE FROM clientes;")
+# 10 BLOQUEAR (R2)
+[usuario]  consultar_bd("SELECT * FROM usuarios WHERE id = 7 OR 1 = 1;")
+# 11 BLOQUEAR (R3)
+[usuario]  consultar_bd("SELECT nombre FROM empleos WHERE id = 7 UNION SELECT usuario, clave FROM admins;")
+# 12 BLOQUEAR (R5, R6)
+[usuario]  abrir_enlace("https://bbva.mx@acceso-seguro.xyz/login")
+# 13 CONFIRMAR (R7)
+[usuario]  abrir_enlace("http://187.23.4.11:8081/banco")

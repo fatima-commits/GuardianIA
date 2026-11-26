@@ -1,0 +1,5 @@
+# modo: congelado
+[usuario]    consultar_bd("SELECT nombre FROM empleos WHERE ciudad = 'GDL';")
+[usuario]    consultar_bd("UPDATE empleos SET salario = 20000 WHERE id = 7;")
+[usuario]    consultar_bd("DELETE FROM pagos WHERE estado = 'cancelado';")
+[usuario]    abrir_enlace("https://www.iteso.mx/")

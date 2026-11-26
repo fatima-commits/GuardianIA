@@ -1,0 +1,33 @@
+# modo: normal
+# ---------- Acciones legítimas (PERMITIR) ----------
+[usuario]    consultar_bd("select nombre, ciudad from clientes where not (ciudad = 'MTY' or ciudad = 'CDMX') order by nombre asc limit 10;")
+[usuario]    consultar_bd("UPDATE pagos SET estado = 'pagado' WHERE id = 42;")
+[usuario]    abrir_enlace("https://www.sat.gob.mx/portal/public/tramites?tipo=rfc&anio=2026#inicio")
+# ---------- Errores léxicos ----------
+[usuario]    consultar_bd("SELECT nombre FROM empleos WHERE salario >= 1000 -- comentario;")
+[usuario]    borrar_todo("clientes")
+[usuario]    abrir_enlace("https://www.iteso.mx/mi ruta")
+[usuario]    abrir_enlace("ftp://archivos.devnova.mx/backup.zip")
+# ---------- Errores sintácticos ----------
+[usuario]    consultar_bd("SELECT FROM empleos;")
+[usuario]    consultar_bd("SELECT * FROM pagos WHERE monto > 1000 AND;")
+[usuario]    consultar_bd("SELECT * FROM pagos WHERE ((monto > 1000) AND estado = 'x'));")
+[usuario]    consultar_bd(abrir_enlace("https://www.iteso.mx"))
+[usuario]    consultar_bd("SELECT * FROM pagos;", "SELECT * FROM clientes;")
+# ---------- Errores semánticos de rango ----------
+[usuario]    abrir_enlace("http://300.10.10.10/login")
+[usuario]    abrir_enlace("https://www.iteso.mx:70000/")
+# ---------- Acciones peligrosas (BLOQUEAR / CONFIRMAR) ----------
+[usuario]    consultar_bd("DROP TABLE pagos;")
+[usuario]    consultar_bd("UPDATE usuarios SET clave = '1234';")
+[mensaje]    abrir_enlace("https://bbva.mx.verificacion.com/acceso")
+[documento]  abrir_enlace("https://xn--bnorte-0va.com/login")
+[mensaje]    abrir_enlace("https://www.iteso.mx/web/general/detalle?id=24")
+# ---------- Inyecciones (BLOQUEAR) ----------
+[documento]  consultar_bd("SELECT nombre FROM empleos WHERE ciudad = 'GDL'; DROP TABLE empleos;")
+[usuario]    consultar_bd("SELECT * FROM clientes WHERE nombre = 'x' OR 'a' = 'a';")
+[mensaje]    consultar_bd("SELECT nombre FROM pagos WHERE id = 1 UNION SELECT usuario, clave FROM admins WHERE 1 = 1;")
+# ---------- Casos que NO deben dispararse (falsos positivos evitados) ----------
+[usuario]    consultar_bd("SELECT * FROM clientes WHERE nota = 'a;b' AND ciudad = 'ciudad';")
+[usuario]    abrir_enlace("https://www.bbva.com.mx/personas")
+[usuario]    abrir_enlace("https://satelite-noticias.com/")

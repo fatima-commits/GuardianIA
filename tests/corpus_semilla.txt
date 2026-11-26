@@ -1,7 +1,7 @@
 # modo: normal
-[usuario] consultar_bd("SELECT nombre, salario FROM empleos WHERE ciudad = 'GDL' ORDER BY salario DESC LIMIT 5;")
-[usuario] consultar_bd("SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pendiente') OR urgente = 1;")
-[mensaje] abrir_enlace("https://bbva.mx@acceso-seguro.xyz/login?id=8821")
-[usuario] consultar_bd("DELETE FROM clientes WHERE 1 = 1;")
-[documento] consultar_bd("SELECT nombre FROM empleos WHERE id = 7 UNION SELECT usuario, clave FROM admins;")
-[usuario] abrir_enlace("https://www.iteso.mx/web/general/detalle?id=24")
+[usuario]    consultar_bd("SELECT nombre, salario FROM empleos WHERE ciudad = 'GDL' ORDER BY salario DESC LIMIT 5;")
+[usuario]    consultar_bd("SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pendiente') OR urgente = 1;")
+[mensaje]    abrir_enlace("https://bbva.mx@acceso-seguro.xyz/login?id=8821")
+[usuario]    consultar_bd("DELETE FROM clientes WHERE 1 = 1;")
+[documento]  consultar_bd("SELECT nombre FROM empleos WHERE id = 7 UNION SELECT usuario, clave FROM admins;")
+[usuario]    abrir_enlace("https://www.iteso.mx/web/general/detalle?id=24")
