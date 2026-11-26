@@ -1,9 +1,15 @@
 # GuardianIA — Guardián de Seguridad para un Agente de IA
 
-Proyecto 2 de Lenguajes Formales (ITESO). El Guardián es un **analizador estático**:
+Proyecto 2 de Lenguajes Formales (ITESO). 
+
+El Guardián es un **analizador estático**:
 lee las acciones que propone el agente *AgenteDev* (`consultar_bd` y `abrir_enlace`),
 las analiza en tres capas (**léxica, sintáctica y semántica**) y emite un dictamen
 explicado: **PERMITIR**, **CONFIRMAR** o **BLOQUEAR**. No ejecuta nada.
+
+## Integrantes de Equipo
+Fátima Vélez
+Karlos Acosta
 
 ## Instalación
 
