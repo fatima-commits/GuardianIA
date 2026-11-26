@@ -1,0 +1,9 @@
+Analizando: modo_congelado.txt  (modo: congelado)
+----------------------------------------------------------------------
+[1]  ✓ PERMITIR   consultar_bd: SELECT nombre FROM empleos WHERE ciudad = 'GDL';
+[2]  ✗ BLOQUEAR   consultar_bd: UPDATE empleos SET salario = 20000 WHERE id = 7;
+      R1: UPDATE no permitido en modo congelado (solo lectura)
+[3]  ✗ BLOQUEAR   consultar_bd: DELETE FROM pagos WHERE estado = 'cancelado';
+      R1: DELETE no permitido en modo congelado (solo lectura)
+[4]  ✓ PERMITIR   abrir_enlace: https://www.iteso.mx/
+Resumen: 2 permitidas, 0 por confirmar, 2 bloqueadas, 0 con error

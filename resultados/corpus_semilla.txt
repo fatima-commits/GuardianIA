@@ -1,0 +1,15 @@
+Analizando: corpus_semilla.txt  (modo: normal)
+----------------------------------------------------------------------
+[1]  ✓ PERMITIR   consultar_bd: SELECT nombre, salario FROM empleos WHERE ciudad = 'GDL' ...
+[2]  ✓ PERMITIR   consultar_bd: SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pe ...
+[3]  ✗ BLOQUEAR   abrir_enlace: https://bbva.mx@acceso-seguro.xyz/login?id=8821
+      R5: usuario con '@' antes del host; el sitio real es acceso-seguro.xyz
+      R6: la marca 'bbva' aparece fuera del dominio principal (acceso-seguro.xyz)
+      R8: origen externo [mensaje]
+[4]  ✗ BLOQUEAR   consultar_bd: DELETE FROM clientes WHERE 1 = 1;
+      R2: tautología 1 = 1 en la condición
+[5]  ✗ BLOQUEAR   consultar_bd: SELECT nombre FROM empleos WHERE id = 7 UNION SELECT usu ...
+      R3: UNION hacia la tabla no permitida 'admins'
+      R8: origen externo [documento]
+[6]  ✓ PERMITIR   abrir_enlace: https://www.iteso.mx/web/general/detalle?id=24
+Resumen: 3 permitidas, 0 por confirmar, 3 bloqueadas, 0 con error

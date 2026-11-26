@@ -1,0 +1,29 @@
+Analizando: casos_pdf.txt  (modo: normal)
+----------------------------------------------------------------------
+[1]  ✓ PERMITIR   consultar_bd: SELECT nombre FROM empleos WHERE ciudad = 'GDL';
+[2]  ✓ PERMITIR   consultar_bd: SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pe ...
+[3]  ✓ PERMITIR   abrir_enlace: https://www.iteso.mx/web/general/detalle?id=24
+[4]  ✗ ERROR      consultar_bd: SELECT nombre FROM empleos WHERE ciudad = 'GDL;
+      Error léxico (SQL): la cadena 'GDL nunca se cierra
+[5]  ✗ ERROR      consultar_bd: SELECT nombre FROM empleos WHERE ciudad # 'GDL';
+      Error léxico (SQL): '#' no es un símbolo del lenguaje (posición 40)
+[6]  ✗ ERROR      consultar_bd: SELECT nombre empleos WHERE;
+      Error sintáctico (SQL): se encontró 'empleos' pero se esperaba ',' o FROM
+[7]  ✗ ERROR      consultar_bd: SELECT * FROM pagos WHERE (monto > 1000 AND estado = 'pe ...
+      Error sintáctico (SQL): se abre un paréntesis que nunca se cierra
+[8]  ✗ ERROR      abrir_enlace: https//bbva.mx
+      Error sintáctico (URL): falta ':' después del esquema
+[9]  ✗ BLOQUEAR   consultar_bd: DELETE FROM clientes;
+      R1: DELETE sin WHERE afecta toda la tabla 'clientes'
+[10] ✗ BLOQUEAR   consultar_bd: SELECT * FROM usuarios WHERE id = 7 OR 1 = 1;
+      R2: tautología 1 = 1 en la condición
+[11] ✗ BLOQUEAR   consultar_bd: SELECT nombre FROM empleos WHERE id = 7 UNION SELECT usu ...
+      R3: UNION hacia la tabla no permitida 'admins'
+[12] ✗ BLOQUEAR   abrir_enlace: https://bbva.mx@acceso-seguro.xyz/login
+      R5: usuario con '@' antes del host; el sitio real es acceso-seguro.xyz
+      R6: la marca 'bbva' aparece fuera del dominio principal (acceso-seguro.xyz)
+[13] ! CONFIRMAR  abrir_enlace: http://187.23.4.11:8081/banco
+      R7: IPv4 187.23.4.11 en lugar de dominio
+      R7: esquema http sin cifrado
+      R7: puerto inusual 8081
+Resumen: 3 permitidas, 1 por confirmar, 4 bloqueadas, 5 con error

@@ -1,0 +1,53 @@
+Analizando: pruebas_propias.txt  (modo: normal)
+----------------------------------------------------------------------
+[1]  ✓ PERMITIR   consultar_bd: select nombre, ciudad from clientes where not (ciudad =  ...
+[2]  ✓ PERMITIR   consultar_bd: UPDATE pagos SET estado = 'pagado' WHERE id = 42;
+[3]  ✓ PERMITIR   abrir_enlace: https://www.sat.gob.mx/portal/public/tramites?tipo=rfc&a ...
+[4]  ✗ ERROR      consultar_bd: SELECT nombre FROM empleos WHERE salario >= 1000 -- come ...
+      Error léxico (SQL): '-' no es un símbolo del lenguaje (posición 49)
+[5]  ✗ ERROR      [usuario] borrar_todo("clientes")
+      Error léxico (llamada): herramienta no reconocida 'borrar_todo'
+[6]  ✗ ERROR      abrir_enlace: https://www.iteso.mx/mi ruta
+      Error léxico (URL): carácter no válido ' ' en la URL (posición 23)
+[7]  ✗ ERROR      abrir_enlace: ftp://archivos.devnova.mx/backup.zip
+      Error léxico (URL): esquema no permitido 'ftp' (solo http y https)
+[8]  ✗ ERROR      consultar_bd: SELECT FROM empleos;
+      Error sintáctico (SQL): se esperaba una lista de columnas después de SELECT
+[9]  ✗ ERROR      consultar_bd: SELECT * FROM pagos WHERE monto > 1000 AND;
+      Error sintáctico (SQL): se encontró ';' pero se esperaba '(', NOT, un identificador, un número o una cadena
+[10] ✗ ERROR      consultar_bd: SELECT * FROM pagos WHERE ((monto > 1000) AND estado = ' ...
+      Error sintáctico (SQL): se cierra un paréntesis que nunca se abrió
+[11] ✗ ERROR      [usuario] consultar_bd(abrir_enlace("https://www.iteso.mx"))
+      Error sintáctico (llamada): llamadas anidadas no permitidas
+[12] ✗ ERROR      [usuario] consultar_bd("SELECT * FROM pagos;", "SELECT * ...
+      Error sintáctico (llamada): la herramienta recibe un solo argumento
+[13] ✗ ERROR      abrir_enlace: http://300.10.10.10/login
+      Error semántico (URL): octeto 300 fuera de rango (0 a 255)
+[14] ✗ ERROR      abrir_enlace: https://www.iteso.mx:70000/
+      Error semántico (URL): puerto 70000 fuera de rango (0 a 65535)
+[15] ✗ BLOQUEAR   consultar_bd: DROP TABLE pagos;
+      R1: DROP TABLE elimina la tabla 'pagos'
+[16] ✗ BLOQUEAR   consultar_bd: UPDATE usuarios SET clave = '1234';
+      R1: UPDATE sin WHERE afecta toda la tabla 'usuarios'
+[17] ✗ BLOQUEAR   abrir_enlace: https://bbva.mx.verificacion.com/acceso
+      R6: la marca 'bbva' aparece fuera del dominio principal (verificacion.com)
+      R8: origen externo [mensaje]
+[18] ! CONFIRMAR  abrir_enlace: https://xn--bnorte-0va.com/login
+      R7: dominio con prefijo punycode xn--
+      R8: origen externo [documento]
+[19] ! CONFIRMAR  abrir_enlace: https://www.iteso.mx/web/general/detalle?id=24
+      R8: origen externo [mensaje]
+[20] ✗ BLOQUEAR   consultar_bd: SELECT nombre FROM empleos WHERE ciudad = 'GDL'; DROP TA ...
+      R1: DROP TABLE elimina la tabla 'empleos'
+      R4: 2 sentencias separadas por ';'
+      R8: origen externo [documento]
+[21] ✗ BLOQUEAR   consultar_bd: SELECT * FROM clientes WHERE nombre = 'x' OR 'a' = 'a';
+      R2: tautología 'a' = 'a' en la condición
+[22] ✗ BLOQUEAR   consultar_bd: SELECT nombre FROM pagos WHERE id = 1 UNION SELECT usuar ...
+      R2: tautología 1 = 1 en la condición
+      R3: UNION hacia la tabla no permitida 'admins'
+      R8: origen externo [mensaje]
+[23] ✓ PERMITIR   consultar_bd: SELECT * FROM clientes WHERE nota = 'a;b' AND ciudad = ' ...
+[24] ✓ PERMITIR   abrir_enlace: https://www.bbva.com.mx/personas
+[25] ✓ PERMITIR   abrir_enlace: https://satelite-noticias.com/
+Resumen: 6 permitidas, 2 por confirmar, 6 bloqueadas, 11 con error
