@@ -1,0 +1,1026 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    UNION
+
+Grammar
+
+Rule 0     S' -> consulta
+Rule 1     consulta -> select_stmt opt_semicolon
+Rule 2     consulta -> update_stmt opt_semicolon
+Rule 3     consulta -> delete_stmt opt_semicolon
+Rule 4     consulta -> drop_stmt opt_semicolon
+Rule 5     opt_semicolon -> SEMICOLON
+Rule 6     opt_semicolon -> empty
+Rule 7     select_stmt -> SELECT columnas FROM tabla where_opt order_opt limit_opt
+Rule 8     columnas -> STAR
+Rule 9     columnas -> lista_columnas
+Rule 10    lista_columnas -> ID
+Rule 11    lista_columnas -> lista_columnas COMMA ID
+Rule 12    tabla -> ID
+Rule 13    where_opt -> WHERE condicion
+Rule 14    where_opt -> empty
+Rule 15    condicion -> condicion AND condicion
+Rule 16    condicion -> condicion OR condicion
+Rule 17    condicion -> NOT condicion
+Rule 18    condicion -> LPAREN condicion RPAREN
+Rule 19    condicion -> valor EQ valor
+Rule 20    condicion -> valor NE valor
+Rule 21    condicion -> valor LT valor
+Rule 22    condicion -> valor GT valor
+Rule 23    condicion -> valor LE valor
+Rule 24    condicion -> valor GE valor
+Rule 25    valor -> ID
+Rule 26    valor -> NUMBER
+Rule 27    valor -> STRING
+Rule 28    update_stmt -> UPDATE ID SET ID EQ valor where_opt
+Rule 29    delete_stmt -> DELETE FROM ID where_opt
+Rule 30    drop_stmt -> DROP TABLE ID
+Rule 31    order_opt -> ORDER BY ID
+Rule 32    order_opt -> ORDER BY ID ASC
+Rule 33    order_opt -> ORDER BY ID DESC
+Rule 34    order_opt -> empty
+Rule 35    limit_opt -> LIMIT NUMBER
+Rule 36    limit_opt -> empty
+Rule 37    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 15
+ASC                  : 32
+BY                   : 31 32 33
+COMMA                : 11
+DELETE               : 29
+DESC                 : 33
+DROP                 : 30
+EQ                   : 19 28
+FROM                 : 7 29
+GE                   : 24
+GT                   : 22
+ID                   : 10 11 12 25 28 28 29 30 31 32 33
+LE                   : 23
+LIMIT                : 35
+LPAREN               : 18
+LT                   : 21
+NE                   : 20
+NOT                  : 17
+NUMBER               : 26 35
+OR                   : 16
+ORDER                : 31 32 33
+RPAREN               : 18
+SELECT               : 7
+SEMICOLON            : 5
+SET                  : 28
+STAR                 : 8
+STRING               : 27
+TABLE                : 30
+UNION                : 
+UPDATE               : 28
+WHERE                : 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+columnas             : 7
+condicion            : 13 15 15 16 16 17 18
+consulta             : 0
+delete_stmt          : 3
+drop_stmt            : 4
+empty                : 6 14 34 36
+limit_opt            : 7
+lista_columnas       : 9 11
+opt_semicolon        : 1 2 3 4
+order_opt            : 7
+select_stmt          : 1
+tabla                : 7
+update_stmt          : 2
+valor                : 19 19 20 20 21 21 22 22 23 23 24 24 28
+where_opt            : 7 28 29
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . consulta
+    (1) consulta -> . select_stmt opt_semicolon
+    (2) consulta -> . update_stmt opt_semicolon
+    (3) consulta -> . delete_stmt opt_semicolon
+    (4) consulta -> . drop_stmt opt_semicolon
+    (7) select_stmt -> . SELECT columnas FROM tabla where_opt order_opt limit_opt
+    (28) update_stmt -> . UPDATE ID SET ID EQ valor where_opt
+    (29) delete_stmt -> . DELETE FROM ID where_opt
+    (30) drop_stmt -> . DROP TABLE ID
+
+    SELECT          shift and go to state 6
+    UPDATE          shift and go to state 7
+    DELETE          shift and go to state 8
+    DROP            shift and go to state 9
+
+    consulta                       shift and go to state 1
+    select_stmt                    shift and go to state 2
+    update_stmt                    shift and go to state 3
+    delete_stmt                    shift and go to state 4
+    drop_stmt                      shift and go to state 5
+
+state 1
+
+    (0) S' -> consulta .
+
+
+
+state 2
+
+    (1) consulta -> select_stmt . opt_semicolon
+    (5) opt_semicolon -> . SEMICOLON
+    (6) opt_semicolon -> . empty
+    (37) empty -> .
+
+    SEMICOLON       shift and go to state 11
+    $end            reduce using rule 37 (empty -> .)
+
+    opt_semicolon                  shift and go to state 10
+    empty                          shift and go to state 12
+
+state 3
+
+    (2) consulta -> update_stmt . opt_semicolon
+    (5) opt_semicolon -> . SEMICOLON
+    (6) opt_semicolon -> . empty
+    (37) empty -> .
+
+    SEMICOLON       shift and go to state 11
+    $end            reduce using rule 37 (empty -> .)
+
+    opt_semicolon                  shift and go to state 13
+    empty                          shift and go to state 12
+
+state 4
+
+    (3) consulta -> delete_stmt . opt_semicolon
+    (5) opt_semicolon -> . SEMICOLON
+    (6) opt_semicolon -> . empty
+    (37) empty -> .
+
+    SEMICOLON       shift and go to state 11
+    $end            reduce using rule 37 (empty -> .)
+
+    opt_semicolon                  shift and go to state 14
+    empty                          shift and go to state 12
+
+state 5
+
+    (4) consulta -> drop_stmt . opt_semicolon
+    (5) opt_semicolon -> . SEMICOLON
+    (6) opt_semicolon -> . empty
+    (37) empty -> .
+
+    SEMICOLON       shift and go to state 11
+    $end            reduce using rule 37 (empty -> .)
+
+    opt_semicolon                  shift and go to state 15
+    empty                          shift and go to state 12
+
+state 6
+
+    (7) select_stmt -> SELECT . columnas FROM tabla where_opt order_opt limit_opt
+    (8) columnas -> . STAR
+    (9) columnas -> . lista_columnas
+    (10) lista_columnas -> . ID
+    (11) lista_columnas -> . lista_columnas COMMA ID
+
+    STAR            shift and go to state 17
+    ID              shift and go to state 19
+
+    columnas                       shift and go to state 16
+    lista_columnas                 shift and go to state 18
+
+state 7
+
+    (28) update_stmt -> UPDATE . ID SET ID EQ valor where_opt
+
+    ID              shift and go to state 20
+
+
+state 8
+
+    (29) delete_stmt -> DELETE . FROM ID where_opt
+
+    FROM            shift and go to state 21
+
+
+state 9
+
+    (30) drop_stmt -> DROP . TABLE ID
+
+    TABLE           shift and go to state 22
+
+
+state 10
+
+    (1) consulta -> select_stmt opt_semicolon .
+
+    $end            reduce using rule 1 (consulta -> select_stmt opt_semicolon .)
+
+
+state 11
+
+    (5) opt_semicolon -> SEMICOLON .
+
+    $end            reduce using rule 5 (opt_semicolon -> SEMICOLON .)
+
+
+state 12
+
+    (6) opt_semicolon -> empty .
+
+    $end            reduce using rule 6 (opt_semicolon -> empty .)
+
+
+state 13
+
+    (2) consulta -> update_stmt opt_semicolon .
+
+    $end            reduce using rule 2 (consulta -> update_stmt opt_semicolon .)
+
+
+state 14
+
+    (3) consulta -> delete_stmt opt_semicolon .
+
+    $end            reduce using rule 3 (consulta -> delete_stmt opt_semicolon .)
+
+
+state 15
+
+    (4) consulta -> drop_stmt opt_semicolon .
+
+    $end            reduce using rule 4 (consulta -> drop_stmt opt_semicolon .)
+
+
+state 16
+
+    (7) select_stmt -> SELECT columnas . FROM tabla where_opt order_opt limit_opt
+
+    FROM            shift and go to state 23
+
+
+state 17
+
+    (8) columnas -> STAR .
+
+    FROM            reduce using rule 8 (columnas -> STAR .)
+
+
+state 18
+
+    (9) columnas -> lista_columnas .
+    (11) lista_columnas -> lista_columnas . COMMA ID
+
+    FROM            reduce using rule 9 (columnas -> lista_columnas .)
+    COMMA           shift and go to state 24
+
+
+state 19
+
+    (10) lista_columnas -> ID .
+
+    COMMA           reduce using rule 10 (lista_columnas -> ID .)
+    FROM            reduce using rule 10 (lista_columnas -> ID .)
+
+
+state 20
+
+    (28) update_stmt -> UPDATE ID . SET ID EQ valor where_opt
+
+    SET             shift and go to state 25
+
+
+state 21
+
+    (29) delete_stmt -> DELETE FROM . ID where_opt
+
+    ID              shift and go to state 26
+
+
+state 22
+
+    (30) drop_stmt -> DROP TABLE . ID
+
+    ID              shift and go to state 27
+
+
+state 23
+
+    (7) select_stmt -> SELECT columnas FROM . tabla where_opt order_opt limit_opt
+    (12) tabla -> . ID
+
+    ID              shift and go to state 29
+
+    tabla                          shift and go to state 28
+
+state 24
+
+    (11) lista_columnas -> lista_columnas COMMA . ID
+
+    ID              shift and go to state 30
+
+
+state 25
+
+    (28) update_stmt -> UPDATE ID SET . ID EQ valor where_opt
+
+    ID              shift and go to state 31
+
+
+state 26
+
+    (29) delete_stmt -> DELETE FROM ID . where_opt
+    (13) where_opt -> . WHERE condicion
+    (14) where_opt -> . empty
+    (37) empty -> .
+
+    WHERE           shift and go to state 33
+    SEMICOLON       reduce using rule 37 (empty -> .)
+    $end            reduce using rule 37 (empty -> .)
+
+    where_opt                      shift and go to state 32
+    empty                          shift and go to state 34
+
+state 27
+
+    (30) drop_stmt -> DROP TABLE ID .
+
+    SEMICOLON       reduce using rule 30 (drop_stmt -> DROP TABLE ID .)
+    $end            reduce using rule 30 (drop_stmt -> DROP TABLE ID .)
+
+
+state 28
+
+    (7) select_stmt -> SELECT columnas FROM tabla . where_opt order_opt limit_opt
+    (13) where_opt -> . WHERE condicion
+    (14) where_opt -> . empty
+    (37) empty -> .
+
+    WHERE           shift and go to state 33
+    ORDER           reduce using rule 37 (empty -> .)
+    LIMIT           reduce using rule 37 (empty -> .)
+    SEMICOLON       reduce using rule 37 (empty -> .)
+    $end            reduce using rule 37 (empty -> .)
+
+    where_opt                      shift and go to state 35
+    empty                          shift and go to state 34
+
+state 29
+
+    (12) tabla -> ID .
+
+    WHERE           reduce using rule 12 (tabla -> ID .)
+    ORDER           reduce using rule 12 (tabla -> ID .)
+    LIMIT           reduce using rule 12 (tabla -> ID .)
+    SEMICOLON       reduce using rule 12 (tabla -> ID .)
+    $end            reduce using rule 12 (tabla -> ID .)
+
+
+state 30
+
+    (11) lista_columnas -> lista_columnas COMMA ID .
+
+    COMMA           reduce using rule 11 (lista_columnas -> lista_columnas COMMA ID .)
+    FROM            reduce using rule 11 (lista_columnas -> lista_columnas COMMA ID .)
+
+
+state 31
+
+    (28) update_stmt -> UPDATE ID SET ID . EQ valor where_opt
+
+    EQ              shift and go to state 36
+
+
+state 32
+
+    (29) delete_stmt -> DELETE FROM ID where_opt .
+
+    SEMICOLON       reduce using rule 29 (delete_stmt -> DELETE FROM ID where_opt .)
+    $end            reduce using rule 29 (delete_stmt -> DELETE FROM ID where_opt .)
+
+
+state 33
+
+    (13) where_opt -> WHERE . condicion
+    (15) condicion -> . condicion AND condicion
+    (16) condicion -> . condicion OR condicion
+    (17) condicion -> . NOT condicion
+    (18) condicion -> . LPAREN condicion RPAREN
+    (19) condicion -> . valor EQ valor
+    (20) condicion -> . valor NE valor
+    (21) condicion -> . valor LT valor
+    (22) condicion -> . valor GT valor
+    (23) condicion -> . valor LE valor
+    (24) condicion -> . valor GE valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    NOT             shift and go to state 38
+    LPAREN          shift and go to state 39
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    condicion                      shift and go to state 37
+    valor                          shift and go to state 40
+
+state 34
+
+    (14) where_opt -> empty .
+
+    SEMICOLON       reduce using rule 14 (where_opt -> empty .)
+    $end            reduce using rule 14 (where_opt -> empty .)
+    ORDER           reduce using rule 14 (where_opt -> empty .)
+    LIMIT           reduce using rule 14 (where_opt -> empty .)
+
+
+state 35
+
+    (7) select_stmt -> SELECT columnas FROM tabla where_opt . order_opt limit_opt
+    (31) order_opt -> . ORDER BY ID
+    (32) order_opt -> . ORDER BY ID ASC
+    (33) order_opt -> . ORDER BY ID DESC
+    (34) order_opt -> . empty
+    (37) empty -> .
+
+    ORDER           shift and go to state 45
+    LIMIT           reduce using rule 37 (empty -> .)
+    SEMICOLON       reduce using rule 37 (empty -> .)
+    $end            reduce using rule 37 (empty -> .)
+
+    order_opt                      shift and go to state 44
+    empty                          shift and go to state 46
+
+state 36
+
+    (28) update_stmt -> UPDATE ID SET ID EQ . valor where_opt
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 47
+
+state 37
+
+    (13) where_opt -> WHERE condicion .
+    (15) condicion -> condicion . AND condicion
+    (16) condicion -> condicion . OR condicion
+
+    SEMICOLON       reduce using rule 13 (where_opt -> WHERE condicion .)
+    $end            reduce using rule 13 (where_opt -> WHERE condicion .)
+    ORDER           reduce using rule 13 (where_opt -> WHERE condicion .)
+    LIMIT           reduce using rule 13 (where_opt -> WHERE condicion .)
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+
+state 38
+
+    (17) condicion -> NOT . condicion
+    (15) condicion -> . condicion AND condicion
+    (16) condicion -> . condicion OR condicion
+    (17) condicion -> . NOT condicion
+    (18) condicion -> . LPAREN condicion RPAREN
+    (19) condicion -> . valor EQ valor
+    (20) condicion -> . valor NE valor
+    (21) condicion -> . valor LT valor
+    (22) condicion -> . valor GT valor
+    (23) condicion -> . valor LE valor
+    (24) condicion -> . valor GE valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    NOT             shift and go to state 38
+    LPAREN          shift and go to state 39
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    condicion                      shift and go to state 50
+    valor                          shift and go to state 40
+
+state 39
+
+    (18) condicion -> LPAREN . condicion RPAREN
+    (15) condicion -> . condicion AND condicion
+    (16) condicion -> . condicion OR condicion
+    (17) condicion -> . NOT condicion
+    (18) condicion -> . LPAREN condicion RPAREN
+    (19) condicion -> . valor EQ valor
+    (20) condicion -> . valor NE valor
+    (21) condicion -> . valor LT valor
+    (22) condicion -> . valor GT valor
+    (23) condicion -> . valor LE valor
+    (24) condicion -> . valor GE valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    NOT             shift and go to state 38
+    LPAREN          shift and go to state 39
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    condicion                      shift and go to state 51
+    valor                          shift and go to state 40
+
+state 40
+
+    (19) condicion -> valor . EQ valor
+    (20) condicion -> valor . NE valor
+    (21) condicion -> valor . LT valor
+    (22) condicion -> valor . GT valor
+    (23) condicion -> valor . LE valor
+    (24) condicion -> valor . GE valor
+
+    EQ              shift and go to state 52
+    NE              shift and go to state 53
+    LT              shift and go to state 54
+    GT              shift and go to state 55
+    LE              shift and go to state 56
+    GE              shift and go to state 57
+
+
+state 41
+
+    (25) valor -> ID .
+
+    EQ              reduce using rule 25 (valor -> ID .)
+    NE              reduce using rule 25 (valor -> ID .)
+    LT              reduce using rule 25 (valor -> ID .)
+    GT              reduce using rule 25 (valor -> ID .)
+    LE              reduce using rule 25 (valor -> ID .)
+    GE              reduce using rule 25 (valor -> ID .)
+    WHERE           reduce using rule 25 (valor -> ID .)
+    SEMICOLON       reduce using rule 25 (valor -> ID .)
+    $end            reduce using rule 25 (valor -> ID .)
+    AND             reduce using rule 25 (valor -> ID .)
+    OR              reduce using rule 25 (valor -> ID .)
+    ORDER           reduce using rule 25 (valor -> ID .)
+    LIMIT           reduce using rule 25 (valor -> ID .)
+    RPAREN          reduce using rule 25 (valor -> ID .)
+
+
+state 42
+
+    (26) valor -> NUMBER .
+
+    EQ              reduce using rule 26 (valor -> NUMBER .)
+    NE              reduce using rule 26 (valor -> NUMBER .)
+    LT              reduce using rule 26 (valor -> NUMBER .)
+    GT              reduce using rule 26 (valor -> NUMBER .)
+    LE              reduce using rule 26 (valor -> NUMBER .)
+    GE              reduce using rule 26 (valor -> NUMBER .)
+    WHERE           reduce using rule 26 (valor -> NUMBER .)
+    SEMICOLON       reduce using rule 26 (valor -> NUMBER .)
+    $end            reduce using rule 26 (valor -> NUMBER .)
+    AND             reduce using rule 26 (valor -> NUMBER .)
+    OR              reduce using rule 26 (valor -> NUMBER .)
+    ORDER           reduce using rule 26 (valor -> NUMBER .)
+    LIMIT           reduce using rule 26 (valor -> NUMBER .)
+    RPAREN          reduce using rule 26 (valor -> NUMBER .)
+
+
+state 43
+
+    (27) valor -> STRING .
+
+    EQ              reduce using rule 27 (valor -> STRING .)
+    NE              reduce using rule 27 (valor -> STRING .)
+    LT              reduce using rule 27 (valor -> STRING .)
+    GT              reduce using rule 27 (valor -> STRING .)
+    LE              reduce using rule 27 (valor -> STRING .)
+    GE              reduce using rule 27 (valor -> STRING .)
+    WHERE           reduce using rule 27 (valor -> STRING .)
+    SEMICOLON       reduce using rule 27 (valor -> STRING .)
+    $end            reduce using rule 27 (valor -> STRING .)
+    AND             reduce using rule 27 (valor -> STRING .)
+    OR              reduce using rule 27 (valor -> STRING .)
+    ORDER           reduce using rule 27 (valor -> STRING .)
+    LIMIT           reduce using rule 27 (valor -> STRING .)
+    RPAREN          reduce using rule 27 (valor -> STRING .)
+
+
+state 44
+
+    (7) select_stmt -> SELECT columnas FROM tabla where_opt order_opt . limit_opt
+    (35) limit_opt -> . LIMIT NUMBER
+    (36) limit_opt -> . empty
+    (37) empty -> .
+
+    LIMIT           shift and go to state 59
+    SEMICOLON       reduce using rule 37 (empty -> .)
+    $end            reduce using rule 37 (empty -> .)
+
+    limit_opt                      shift and go to state 58
+    empty                          shift and go to state 60
+
+state 45
+
+    (31) order_opt -> ORDER . BY ID
+    (32) order_opt -> ORDER . BY ID ASC
+    (33) order_opt -> ORDER . BY ID DESC
+
+    BY              shift and go to state 61
+
+
+state 46
+
+    (34) order_opt -> empty .
+
+    LIMIT           reduce using rule 34 (order_opt -> empty .)
+    SEMICOLON       reduce using rule 34 (order_opt -> empty .)
+    $end            reduce using rule 34 (order_opt -> empty .)
+
+
+state 47
+
+    (28) update_stmt -> UPDATE ID SET ID EQ valor . where_opt
+    (13) where_opt -> . WHERE condicion
+    (14) where_opt -> . empty
+    (37) empty -> .
+
+    WHERE           shift and go to state 33
+    SEMICOLON       reduce using rule 37 (empty -> .)
+    $end            reduce using rule 37 (empty -> .)
+
+    where_opt                      shift and go to state 62
+    empty                          shift and go to state 34
+
+state 48
+
+    (15) condicion -> condicion AND . condicion
+    (15) condicion -> . condicion AND condicion
+    (16) condicion -> . condicion OR condicion
+    (17) condicion -> . NOT condicion
+    (18) condicion -> . LPAREN condicion RPAREN
+    (19) condicion -> . valor EQ valor
+    (20) condicion -> . valor NE valor
+    (21) condicion -> . valor LT valor
+    (22) condicion -> . valor GT valor
+    (23) condicion -> . valor LE valor
+    (24) condicion -> . valor GE valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    NOT             shift and go to state 38
+    LPAREN          shift and go to state 39
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    condicion                      shift and go to state 63
+    valor                          shift and go to state 40
+
+state 49
+
+    (16) condicion -> condicion OR . condicion
+    (15) condicion -> . condicion AND condicion
+    (16) condicion -> . condicion OR condicion
+    (17) condicion -> . NOT condicion
+    (18) condicion -> . LPAREN condicion RPAREN
+    (19) condicion -> . valor EQ valor
+    (20) condicion -> . valor NE valor
+    (21) condicion -> . valor LT valor
+    (22) condicion -> . valor GT valor
+    (23) condicion -> . valor LE valor
+    (24) condicion -> . valor GE valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    NOT             shift and go to state 38
+    LPAREN          shift and go to state 39
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    condicion                      shift and go to state 64
+    valor                          shift and go to state 40
+
+state 50
+
+    (17) condicion -> NOT condicion .
+    (15) condicion -> condicion . AND condicion
+    (16) condicion -> condicion . OR condicion
+
+    AND             reduce using rule 17 (condicion -> NOT condicion .)
+    OR              reduce using rule 17 (condicion -> NOT condicion .)
+    SEMICOLON       reduce using rule 17 (condicion -> NOT condicion .)
+    $end            reduce using rule 17 (condicion -> NOT condicion .)
+    ORDER           reduce using rule 17 (condicion -> NOT condicion .)
+    LIMIT           reduce using rule 17 (condicion -> NOT condicion .)
+    RPAREN          reduce using rule 17 (condicion -> NOT condicion .)
+
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 49 ]
+
+
+state 51
+
+    (18) condicion -> LPAREN condicion . RPAREN
+    (15) condicion -> condicion . AND condicion
+    (16) condicion -> condicion . OR condicion
+
+    RPAREN          shift and go to state 65
+    AND             shift and go to state 48
+    OR              shift and go to state 49
+
+
+state 52
+
+    (19) condicion -> valor EQ . valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 66
+
+state 53
+
+    (20) condicion -> valor NE . valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 67
+
+state 54
+
+    (21) condicion -> valor LT . valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 68
+
+state 55
+
+    (22) condicion -> valor GT . valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 69
+
+state 56
+
+    (23) condicion -> valor LE . valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 70
+
+state 57
+
+    (24) condicion -> valor GE . valor
+    (25) valor -> . ID
+    (26) valor -> . NUMBER
+    (27) valor -> . STRING
+
+    ID              shift and go to state 41
+    NUMBER          shift and go to state 42
+    STRING          shift and go to state 43
+
+    valor                          shift and go to state 71
+
+state 58
+
+    (7) select_stmt -> SELECT columnas FROM tabla where_opt order_opt limit_opt .
+
+    SEMICOLON       reduce using rule 7 (select_stmt -> SELECT columnas FROM tabla where_opt order_opt limit_opt .)
+    $end            reduce using rule 7 (select_stmt -> SELECT columnas FROM tabla where_opt order_opt limit_opt .)
+
+
+state 59
+
+    (35) limit_opt -> LIMIT . NUMBER
+
+    NUMBER          shift and go to state 72
+
+
+state 60
+
+    (36) limit_opt -> empty .
+
+    SEMICOLON       reduce using rule 36 (limit_opt -> empty .)
+    $end            reduce using rule 36 (limit_opt -> empty .)
+
+
+state 61
+
+    (31) order_opt -> ORDER BY . ID
+    (32) order_opt -> ORDER BY . ID ASC
+    (33) order_opt -> ORDER BY . ID DESC
+
+    ID              shift and go to state 73
+
+
+state 62
+
+    (28) update_stmt -> UPDATE ID SET ID EQ valor where_opt .
+
+    SEMICOLON       reduce using rule 28 (update_stmt -> UPDATE ID SET ID EQ valor where_opt .)
+    $end            reduce using rule 28 (update_stmt -> UPDATE ID SET ID EQ valor where_opt .)
+
+
+state 63
+
+    (15) condicion -> condicion AND condicion .
+    (15) condicion -> condicion . AND condicion
+    (16) condicion -> condicion . OR condicion
+
+    AND             reduce using rule 15 (condicion -> condicion AND condicion .)
+    OR              reduce using rule 15 (condicion -> condicion AND condicion .)
+    SEMICOLON       reduce using rule 15 (condicion -> condicion AND condicion .)
+    $end            reduce using rule 15 (condicion -> condicion AND condicion .)
+    ORDER           reduce using rule 15 (condicion -> condicion AND condicion .)
+    LIMIT           reduce using rule 15 (condicion -> condicion AND condicion .)
+    RPAREN          reduce using rule 15 (condicion -> condicion AND condicion .)
+
+  ! AND             [ shift and go to state 48 ]
+  ! OR              [ shift and go to state 49 ]
+
+
+state 64
+
+    (16) condicion -> condicion OR condicion .
+    (15) condicion -> condicion . AND condicion
+    (16) condicion -> condicion . OR condicion
+
+    OR              reduce using rule 16 (condicion -> condicion OR condicion .)
+    SEMICOLON       reduce using rule 16 (condicion -> condicion OR condicion .)
+    $end            reduce using rule 16 (condicion -> condicion OR condicion .)
+    ORDER           reduce using rule 16 (condicion -> condicion OR condicion .)
+    LIMIT           reduce using rule 16 (condicion -> condicion OR condicion .)
+    RPAREN          reduce using rule 16 (condicion -> condicion OR condicion .)
+    AND             shift and go to state 48
+
+  ! AND             [ reduce using rule 16 (condicion -> condicion OR condicion .) ]
+  ! OR              [ shift and go to state 49 ]
+
+
+state 65
+
+    (18) condicion -> LPAREN condicion RPAREN .
+
+    AND             reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+    OR              reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+    SEMICOLON       reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+    $end            reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+    ORDER           reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+    LIMIT           reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+    RPAREN          reduce using rule 18 (condicion -> LPAREN condicion RPAREN .)
+
+
+state 66
+
+    (19) condicion -> valor EQ valor .
+
+    AND             reduce using rule 19 (condicion -> valor EQ valor .)
+    OR              reduce using rule 19 (condicion -> valor EQ valor .)
+    SEMICOLON       reduce using rule 19 (condicion -> valor EQ valor .)
+    $end            reduce using rule 19 (condicion -> valor EQ valor .)
+    ORDER           reduce using rule 19 (condicion -> valor EQ valor .)
+    LIMIT           reduce using rule 19 (condicion -> valor EQ valor .)
+    RPAREN          reduce using rule 19 (condicion -> valor EQ valor .)
+
+
+state 67
+
+    (20) condicion -> valor NE valor .
+
+    AND             reduce using rule 20 (condicion -> valor NE valor .)
+    OR              reduce using rule 20 (condicion -> valor NE valor .)
+    SEMICOLON       reduce using rule 20 (condicion -> valor NE valor .)
+    $end            reduce using rule 20 (condicion -> valor NE valor .)
+    ORDER           reduce using rule 20 (condicion -> valor NE valor .)
+    LIMIT           reduce using rule 20 (condicion -> valor NE valor .)
+    RPAREN          reduce using rule 20 (condicion -> valor NE valor .)
+
+
+state 68
+
+    (21) condicion -> valor LT valor .
+
+    AND             reduce using rule 21 (condicion -> valor LT valor .)
+    OR              reduce using rule 21 (condicion -> valor LT valor .)
+    SEMICOLON       reduce using rule 21 (condicion -> valor LT valor .)
+    $end            reduce using rule 21 (condicion -> valor LT valor .)
+    ORDER           reduce using rule 21 (condicion -> valor LT valor .)
+    LIMIT           reduce using rule 21 (condicion -> valor LT valor .)
+    RPAREN          reduce using rule 21 (condicion -> valor LT valor .)
+
+
+state 69
+
+    (22) condicion -> valor GT valor .
+
+    AND             reduce using rule 22 (condicion -> valor GT valor .)
+    OR              reduce using rule 22 (condicion -> valor GT valor .)
+    SEMICOLON       reduce using rule 22 (condicion -> valor GT valor .)
+    $end            reduce using rule 22 (condicion -> valor GT valor .)
+    ORDER           reduce using rule 22 (condicion -> valor GT valor .)
+    LIMIT           reduce using rule 22 (condicion -> valor GT valor .)
+    RPAREN          reduce using rule 22 (condicion -> valor GT valor .)
+
+
+state 70
+
+    (23) condicion -> valor LE valor .
+
+    AND             reduce using rule 23 (condicion -> valor LE valor .)
+    OR              reduce using rule 23 (condicion -> valor LE valor .)
+    SEMICOLON       reduce using rule 23 (condicion -> valor LE valor .)
+    $end            reduce using rule 23 (condicion -> valor LE valor .)
+    ORDER           reduce using rule 23 (condicion -> valor LE valor .)
+    LIMIT           reduce using rule 23 (condicion -> valor LE valor .)
+    RPAREN          reduce using rule 23 (condicion -> valor LE valor .)
+
+
+state 71
+
+    (24) condicion -> valor GE valor .
+
+    AND             reduce using rule 24 (condicion -> valor GE valor .)
+    OR              reduce using rule 24 (condicion -> valor GE valor .)
+    SEMICOLON       reduce using rule 24 (condicion -> valor GE valor .)
+    $end            reduce using rule 24 (condicion -> valor GE valor .)
+    ORDER           reduce using rule 24 (condicion -> valor GE valor .)
+    LIMIT           reduce using rule 24 (condicion -> valor GE valor .)
+    RPAREN          reduce using rule 24 (condicion -> valor GE valor .)
+
+
+state 72
+
+    (35) limit_opt -> LIMIT NUMBER .
+
+    SEMICOLON       reduce using rule 35 (limit_opt -> LIMIT NUMBER .)
+    $end            reduce using rule 35 (limit_opt -> LIMIT NUMBER .)
+
+
+state 73
+
+    (31) order_opt -> ORDER BY ID .
+    (32) order_opt -> ORDER BY ID . ASC
+    (33) order_opt -> ORDER BY ID . DESC
+
+    LIMIT           reduce using rule 31 (order_opt -> ORDER BY ID .)
+    SEMICOLON       reduce using rule 31 (order_opt -> ORDER BY ID .)
+    $end            reduce using rule 31 (order_opt -> ORDER BY ID .)
+    ASC             shift and go to state 74
+    DESC            shift and go to state 75
+
+
+state 74
+
+    (32) order_opt -> ORDER BY ID ASC .
+
+    LIMIT           reduce using rule 32 (order_opt -> ORDER BY ID ASC .)
+    SEMICOLON       reduce using rule 32 (order_opt -> ORDER BY ID ASC .)
+    $end            reduce using rule 32 (order_opt -> ORDER BY ID ASC .)
+
+
+state 75
+
+    (33) order_opt -> ORDER BY ID DESC .
+
+    LIMIT           reduce using rule 33 (order_opt -> ORDER BY ID DESC .)
+    SEMICOLON       reduce using rule 33 (order_opt -> ORDER BY ID DESC .)
+    $end            reduce using rule 33 (order_opt -> ORDER BY ID DESC .)
+
