@@ -10,6 +10,7 @@ explicado: **PERMITIR**, **CONFIRMAR** o **BLOQUEAR**. No ejecuta nada.
 ## Integrantes de Equipo
 Fátima Vélez
 Karlos Acosta
+Alejandro Ortega
 
 ## Instalación
 
